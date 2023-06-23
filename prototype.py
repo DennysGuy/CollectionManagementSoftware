@@ -3,7 +3,6 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QStackedWidget, QWidget, QFrame, QMainWindow, QLabel
 
-
 class EntryScreen(QMainWindow):
   
   def __init__(self):
@@ -41,7 +40,6 @@ class EntryScreen(QMainWindow):
     self.createmenu.hide()
     self.createbutton.toggled['bool'].connect(self.createmenu.setEnabled)
     self.createbutton.toggled['bool'].connect(self.createmenu.setVisible)
-  
    
   def initCreateMenu(self) -> QWidget:
     self.createmenu = QWidget(self)
@@ -80,8 +78,11 @@ class EntryScreen(QMainWindow):
     
     return self.createmenu
   
-  
+  def initEntryForm(self) -> QWidget:
+    self.entryform = QWidget(self)
     
+    return self.entryfrom 
+  
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   entrywindow = EntryScreen()
