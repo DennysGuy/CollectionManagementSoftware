@@ -60,6 +60,8 @@ class EntryScreen(QMainWindow):
     self.entrybutton.setCheckable(False)
     self.entrybutton.setAutoExclusive(True)
     self.entrybutton.setObjectName("entrybutton")
+    self.entrybutton.clicked.connect(self.createmenu.close)
+    self.entrybutton.clicked.connect(self.initEntryForm)
     self.verticallayout.addWidget(self.entrybutton)
     
     self.categorybutton = QtWidgets.QPushButton(self.layoutwidget)
@@ -78,20 +80,37 @@ class EntryScreen(QMainWindow):
     
     return self.createmenu
   
-  def initEntryForm(self) -> QWidget:
-    self.entryform = QWidget(self)
+  def initEntryForm(self):
+    self.entryform = EntryForm()
+    self.entryform.show()
     
-    return self.entryfrom 
-  
+    '''
+    self.entryform = QWidget(self)
+    self.entryform.setGeometry(QtCore.QRect(0, 0, 611, 361))
+    self.entryform.setStyleSheet("QWidget#entryform{\n""border-radius:15px;\n""background-color: rgb(226, 226, 226);\n""border:1px dotted;""}")
+    self.entryform.setObjectName("entryform")
+    
+    return self.entryform 
+    
+    '''
+    
+ 
+class EntryForm(QWidget):
+  def __init__(self):
+    super(EntryForm, self).__init__()
+    loadUi("creationwindow.ui", self)
+
+
+
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   entrywindow = EntryScreen()
   entrywindow.setFixedHeight(600)
   entrywindow.setFixedWidth(800)
   entrywindow.show()
+ 
   
   try:
     sys.exit(app.exec())
   except:
     print("Exiting")
-  
