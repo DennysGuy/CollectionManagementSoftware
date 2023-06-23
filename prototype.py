@@ -2,6 +2,7 @@ import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QStackedWidget, QWidget, QFrame, QMainWindow, QLabel
+from entryform import EntryForm
 
 class EntryScreen(QMainWindow):
   
@@ -41,6 +42,15 @@ class EntryScreen(QMainWindow):
     self.createbutton.toggled['bool'].connect(self.createmenu.setEnabled)
     self.createbutton.toggled['bool'].connect(self.createmenu.setVisible)
    
+    '''
+    self.entryform = QWidget(self)
+    self.entryform.setGeometry(QtCore.QRect(0, 0, 611, 361))
+    self.entryform.setStyleSheet("QWidget#entryform{\n""border-radius:15px;\n""background-color: rgb(226, 226, 226);\n""border:1px dotted;""}")
+    self.entryform.setObjectName("entryform")
+    
+    return self.entryform 
+    
+    '''
   def initCreateMenu(self) -> QWidget:
     self.createmenu = QWidget(self)
     self.createmenu.setGeometry(QtCore.QRect(0, 0, 101, 101))
@@ -83,23 +93,6 @@ class EntryScreen(QMainWindow):
   def initEntryForm(self):
     self.entryform = EntryForm()
     self.entryform.show()
-    
-    '''
-    self.entryform = QWidget(self)
-    self.entryform.setGeometry(QtCore.QRect(0, 0, 611, 361))
-    self.entryform.setStyleSheet("QWidget#entryform{\n""border-radius:15px;\n""background-color: rgb(226, 226, 226);\n""border:1px dotted;""}")
-    self.entryform.setObjectName("entryform")
-    
-    return self.entryform 
-    
-    '''
-    
- 
-class EntryForm(QWidget):
-  def __init__(self):
-    super(EntryForm, self).__init__()
-    loadUi("creationwindow.ui", self)
-
 
 
 if __name__ == '__main__':
