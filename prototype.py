@@ -95,9 +95,6 @@ class EntryScreen(QMainWindow):
     self.entryform.show()
     
     
-    
-
-
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   entrywindow = EntryScreen()
