@@ -16,7 +16,7 @@ class EntryForm(QWidget):
     windowWidth = self.frameGeometry().width()
     windowHeight = self.frameGeometry().height()
     
-    #self.setStyleSheet("QWidget#entryform{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.948864, y2:1, stop:0 rgba(72, 113, 139, 255), stop:1 rgba(255, 255, 255, 255));}")
+    self.setStyleSheet("QWidget#entryform{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.948864, y2:1, stop:0 rgba(72, 113, 139, 255), stop:1 rgba(255, 255, 255, 255));}")
     self.inputwindow = QWidget(self)
     
     widthOffSet = 80
@@ -110,8 +110,7 @@ class EntryForm(QWidget):
     self.nextbutton.setStyleSheet("background-color: white; font: 18pt \"MS Shell Dlg 2\"")
     self.nextbutton.setGeometry(QtCore.QRect(0,0, 100, 50))
     self.nextbutton.move(int(windowWidth/2)+50, 500)
-    self.nextbutton.clicked.connect(self.goToPage2)
-    
+
     self.backbutton = QtWidgets.QPushButton(self)
     self.backbutton.setText("Back")
     self.backbutton.setStyleSheet("background-color: white; font: 18pt \"MS Shell Dlg 2\"")
@@ -119,8 +118,7 @@ class EntryForm(QWidget):
     self.backbutton.move(int(windowWidth/2)-150, 500)
     self.backbutton.setDisabled(True)
 
-  def goToPage2(self):
-    widget.setCurrentIndex(widget.currentIndex()+1)
+  
   
 class EntryFormPage2(QWidget):
   def __init__(self):
@@ -235,18 +233,42 @@ class EntryFormPage2(QWidget):
     self.backbutton.setGeometry(QtCore.QRect(0,0, 100, 50))
     self.backbutton.move(int(windowWidth/2)-150, 500)
     self.backbutton.setEnabled(True)
-    self.backbutton.clicked.connect(self.goBack)
+  
+  
+class EntryPane(QWidget):
+    def __init__(self):
+      super().__init__()
+      self.page1 = EntryForm()
+      self.page2 = EntryFormPage2()
+      
+      self.widget = QStackedWidget(self)
+      self.widget.setObjectName("stackedwidget")
+      self.widget.addWidget(self.page1)
+      self.widget.addWidget(self.page2)
+      self.widget.setStyleSheet("QStackedWidget#stackedwidget{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.948864, y2:1, stop:0 rgba(72, 113, 139, 255), stop:1 rgba(255, 255, 255, 255));}")
+      self.widget.setFixedHeight(600)
+      self.widget.setFixedWidth(800)
+
+      #page 1 button setup
+      self.page1.nextbutton.clicked.connect(self.goToNextPage)
+      #page 2 button setup
+      self.page2.nextbutton.clicked.connect(self.goToNextPage)
+      self.page2.backbutton.clicked.connect(self.goToPreviousPage)
+      #page 3 button setup
+      #page 4 button setup
     
-  def goBack(self):
-    widget.setCurrentIndex(widget.currentIndex()-1)
+    def goToNextPage(self):
+      self.widget.setCurrentIndex(self.widget.currentIndex()+1)
+      
+    def goToPreviousPage(self):
+      self.widget.setCurrentIndex(self.widget.currentIndex()-1)
 
 
 if __name__ == '__main__':
   app = QApplication(sys.argv)
   page1 = EntryForm()
   page2 = EntryFormPage2()
-  
-  #entryform.show()
+    
   widget = QStackedWidget()
   widget.setObjectName("stackedwidget")
   widget.addWidget(page1)
@@ -255,9 +277,9 @@ if __name__ == '__main__':
   widget.setFixedHeight(600)
   widget.setFixedWidth(800)
   widget.show()
-  
-  
+    
   try:
     sys.exit(app.exec())
   except:
     print("Exiting")
+

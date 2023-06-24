@@ -2,7 +2,7 @@ import sys
 from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QStackedWidget, QWidget, QFrame, QMainWindow, QLabel
-from entryform import EntryForm
+from entryform import EntryPane
 
 class EntryScreen(QMainWindow):
   
@@ -91,8 +91,11 @@ class EntryScreen(QMainWindow):
     return self.createmenu
   
   def initEntryForm(self):
-    self.entryform = EntryForm()
+    self.entryform = EntryPane()
     self.entryform.show()
+    
+    
+    
 
 
 if __name__ == '__main__':
