@@ -3,6 +3,7 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QStackedWidget, QWidget, QFrame, QMainWindow, QLabel
 from entryform import EntryPane
+from utilities.cdoublylinkedlist import CDoublyLinkedList
 
 class EntryScreen(QMainWindow):
   
@@ -11,6 +12,9 @@ class EntryScreen(QMainWindow):
     self.setWindowTitle("Collection Management")
     self.setGeometry(300,300,800,600)
     self.initUI()
+    
+    list = CDoublyLinkedList()
+    list.head.next = list.node(1, None, list.head)
     
   
   def initUI(self):
