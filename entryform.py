@@ -16,7 +16,7 @@ class IdentificationForm(QWidget):
     windowWidth = self.frameGeometry().width()
     windowHeight = self.frameGeometry().height()
     
-    self.setStyleSheet("QWidget#entryform{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.948864, y2:1, stop:0 rgba(72, 113, 139, 255), stop:1 rgba(255, 255, 255, 255));}")
+    #self.setStyleSheet("QWidget#identification{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.948864, y2:1, stop:0 rgba(72, 113, 139, 255), stop:1 rgba(255, 255, 255, 255));}")
     self.inputwindow = QWidget(self)
     
     widthOffSet = 80
@@ -49,25 +49,30 @@ class IdentificationForm(QWidget):
     self.isbnLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
     self.isbnLabel.move(int(windowWidth/8), int(windowHeight/4))
     
+    self.consoleLabel = QLabel(self)
+    self.consoleLabel.setText("Console:")
+    self.consoleLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\"")
+    self.consoleLabel.move(int(windowWidth/8), int(windowHeight/3))
+    
     self.developerLabel = QLabel(self)
     self.developerLabel.setText("Dev:")
     self.developerLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.developerLabel.move(int(windowWidth/8), int(windowHeight/3))
+    self.developerLabel.move(int(windowWidth/8), int(windowHeight/2.4))
 
     self.publisherLabel = QLabel(self)
     self.publisherLabel.setText("Pub:")
     self.publisherLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.publisherLabel.move(int(windowWidth/8), int(windowHeight/2.4))
+    self.publisherLabel.move(int(windowWidth/8), int(windowHeight/2))
     
     self.seriesLabel = QLabel(self)
     self.seriesLabel.setText("Series:")
     self.seriesLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.seriesLabel.move(int(windowWidth/8), int(windowHeight/2))
+    self.seriesLabel.move(int(windowWidth/8), int(windowHeight/1.7))
     
     self.genreLabel = QLabel(self)
     self.genreLabel.setText("Genre:")
     self.genreLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.genreLabel.move(int(windowWidth/8), int(windowHeight/1.7))
+    self.genreLabel.move(int(windowWidth/8), int(windowHeight/1.5))
     
     self.titleInput = QtWidgets.QLineEdit(self)
     self.titleInput.setGeometry(QtCore.QRect(0,0, 490, 30))
@@ -81,29 +86,36 @@ class IdentificationForm(QWidget):
     self.isbnInput.setObjectName("isbninput")
     self.isbnInput.move(int(windowWidth/8)+70, int(windowHeight/4)-5)
     
+    self.consoleInput = QtWidgets.QLineEdit(self)
+    self.consoleInput.setGeometry(QtCore.QRect(0,0, 490, 30))
+    self.consoleInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
+    self.consoleInput.setObjectName("developerinput")
+    self.consoleInput.move(int(windowWidth/8)+70, int(windowHeight/3)-5)
+    
+    
     self.developerInput = QtWidgets.QLineEdit(self)
     self.developerInput.setGeometry(QtCore.QRect(0,0, 490, 30))
     self.developerInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
     self.developerInput.setObjectName("developerinput")
-    self.developerInput.move(int(windowWidth/8)+70, int(windowHeight/3)-5)
+    self.developerInput.move(int(windowWidth/8)+70, int(windowHeight/2.4)-5)
     
     self.publisherInput = QtWidgets.QLineEdit(self)
     self.publisherInput.setGeometry(QtCore.QRect(0,0, 490, 30))
     self.publisherInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
     self.publisherInput.setObjectName("publisherinput")
-    self.publisherInput.move(int(windowWidth/8)+70, int(windowHeight/2.4)-5)
+    self.publisherInput.move(int(windowWidth/8)+70, int(windowHeight/2)-5)
     
     self.seriesInput = QtWidgets.QLineEdit(self)
     self.seriesInput.setGeometry(QtCore.QRect(0,0, 490, 30))
     self.seriesInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
     self.seriesInput.setObjectName("seriesinput")
-    self.seriesInput.move(int(windowWidth/8)+70, int(windowHeight/2)-5)
+    self.seriesInput.move(int(windowWidth/8)+70, int(windowHeight/1.7)-5)
     
     self.genreInput = QtWidgets.QLineEdit(self)
     self.genreInput.setGeometry(QtCore.QRect(0,0, 490, 30))
     self.genreInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
     self.genreInput.setObjectName("genreinput")
-    self.genreInput.move(int(windowWidth/8)+70, int(windowHeight/1.7)-5)
+    self.genreInput.move(int(windowWidth/8)+70, int(windowHeight/1.5)-5)
     
     self.nextbutton = QtWidgets.QPushButton(self)
     self.nextbutton.setText("Next")
@@ -315,89 +327,6 @@ class ContributorsForm(QWidget):
     self.backbutton.move(int(windowWidth/2)-150, 500)
     self.backbutton.setEnabled(True)
 
-class PricesDatesForm(QWidget):
-  def __init__(self):
-    super().__init__()
-    
-    self.setWindowTitle("Entry Window")
-    self.setObjectName("pricesdatesform")
-    self.setFixedHeight(600)
-    self.setFixedWidth(800)
-    
-    windowWidth = self.frameGeometry().width()
-    windowHeight = self.frameGeometry().height()
-    
-    self.setStyleSheet("QWidget#entryform{background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0.948864, y2:1, stop:0 rgba(72, 113, 139, 255), stop:1 rgba(255, 255, 255, 255));}")
-    self.inputwindow = QWidget(self)
-    
-    widthOffSet = 80
-    heightOffSet = 200
-    
-    self.title = QLabel(self)
-    self.title.setText("Dates and Prices")
-    self.title.setGeometry(QtCore.QRect(0, 0, 800, 70))
-    self.title.setAlignment(QtCore.Qt.AlignCenter)
-    self.title.setStyleSheet("color: rgb(255, 255, 255);\n"
-    "font: 26pt \"MS Shell Dlg 2\";")
-    self.title.setAlignment(QtCore.Qt.AlignCenter)
-    self.inputwindow.setGeometry(QtCore.QRect(40, 60, windowWidth-widthOffSet, windowHeight-heightOffSet))
-    self.inputwindow.setStyleSheet("QWidget#labels{background-color: rgb(255, 255, 255);" "border-radius: 15px;" "border: 1px dotted;}")
-    self.inputwindow.setObjectName("labels")
-    
-    '''
-    self.verticallayout = QtWidgets.QVBoxLayout(self.inputwindow)
-    self.verticallayout.setContentsMargins(50, -500, -200, -500)
-    self.verticallayout.setObjectName("verticalLayout")
-    '''
-    
-    self.pruchasePriceLabel = QLabel(self)
-    self.pruchasePriceLabel.setText("Purchase Price:")
-    self.pruchasePriceLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.pruchasePriceLabel.move(int(windowWidth/8), int(windowHeight/6))
-  
-    self.purchaseDateLabel = QLabel(self)
-    self.purchaseDateLabel.setText("Purchase Date:")
-    self.purchaseDateLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.purchaseDateLabel.move(int(windowWidth/8), int(windowHeight/3))
-    
-    self.releaseDateLabel = QLabel(self)
-    self.releaseDateLabel.setText("Release Date(s):")
-    self.releaseDateLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.releaseDateLabel.move(int(windowWidth/8), int(windowHeight/2))
-
-    
-    self.pruchasePriceInput = QtWidgets.QLineEdit(self)
-    self.pruchasePriceInput.setGeometry(QtCore.QRect(0,0, 430, 30))
-    self.pruchasePriceInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.pruchasePriceInput.setObjectName("purchasepriceinput")
-    self.pruchasePriceInput.move(int(windowWidth/8)+170, int(windowHeight/6)-5)
-    
-    self.releaseDateInput = QtWidgets.QLineEdit(self)
-    self.releaseDateInput.setGeometry(QtCore.QRect(0,0, 430, 30))
-    self.releaseDateInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.releaseDateInput.setObjectName("releasedateinput")
-    self.releaseDateInput.move(int(windowWidth/8)+170, int(windowHeight/3)-5)
-    
-    self.developerInput = QtWidgets.QLineEdit(self)
-    self.developerInput.setGeometry(QtCore.QRect(0,0, 430, 30))
-    self.developerInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.developerInput.setObjectName("developerinput")
-    self.developerInput.move(int(windowWidth/8)+170, int(windowHeight/2)-5)
-  
-    
-    self.nextbutton = QtWidgets.QPushButton(self)
-    self.nextbutton.setText("Next")
-    self.nextbutton.setStyleSheet("background-color: white; font: 18pt \"MS Shell Dlg 2\"")
-    self.nextbutton.setGeometry(QtCore.QRect(0,0, 100, 50))
-    self.nextbutton.move(int(windowWidth/2)+50, 500)
-    
-    self.backbutton = QtWidgets.QPushButton(self)
-    self.backbutton.setText("Back")
-    self.backbutton.setStyleSheet("background-color: white; font: 18pt \"MS Shell Dlg 2\"")
-    self.backbutton.setGeometry(QtCore.QRect(0,0, 100, 50))
-    self.backbutton.move(int(windowWidth/2)-150, 500)
-    self.backbutton.setEnabled(True)
-
 class DescriptionLinksForm(QWidget):
   def __init__(self):
     super().__init__()
@@ -481,6 +410,7 @@ class EntryPane(QWidget):
       
       self.widget = QStackedWidget(self)
       self.widget.setObjectName("stackedwidget")
+  
       self.widget.addWidget(self.page1)
       self.widget.addWidget(self.page2)
       self.widget.addWidget(self.page3)

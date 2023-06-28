@@ -3,7 +3,7 @@ from PyQt5.uic import loadUi
 from PyQt5 import QtWidgets, QtGui, QtCore
 from PyQt5.QtWidgets import QDialog, QApplication, QStackedWidget, QWidget, QFrame, QMainWindow, QLabel
 from entryform import EntryPane
-from utilities.cdoublylinkedlist import CDoublyLinkedList
+from utilities.linkedlist import LinkedList
 
 class EntryScreen(QMainWindow):
   
@@ -13,8 +13,8 @@ class EntryScreen(QMainWindow):
     self.setGeometry(300,300,800,600)
     self.initUI()
     
-    list = CDoublyLinkedList()
-    list.head.next = list.node(1, None, list.head)
+    list = LinkedList()
+    
     
   
   def initUI(self):
@@ -25,7 +25,7 @@ class EntryScreen(QMainWindow):
   def initHeadLabel(self):
     self.headlabel = QLabel(self)
     self.headlabel.setText("Entries")
-    self.headlabel.setGeometry(QtCore.QRect(0, 0, 801, 121))
+    self.headlabel.setGeometry(QtCore.QRect(0, 0, 800, 120))
     self.headlabel.setAlignment(QtCore.Qt.AlignCenter)
     self.headlabel.setStyleSheet("background-color: rgb(7, 156, 255);\n"
 "color: rgb(255, 255, 255);\n"
