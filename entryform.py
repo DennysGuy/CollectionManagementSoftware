@@ -3,6 +3,7 @@ import sys
 from PyQt5 import QtCore
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QDialog, QApplication, QStackedWidget, QWidget, QFrame, QMainWindow, QLabel
+from entry import Entry
 
 class IdentificationForm(QWidget):
   def __init__(self):
@@ -165,10 +166,10 @@ class PricesDatesForm(QWidget):
     self.verticallayout.setObjectName("verticalLayout")
     '''
     
-    self.pruchasePriceLabel = QLabel(self)
-    self.pruchasePriceLabel.setText("Purchase Price:")
-    self.pruchasePriceLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
-    self.pruchasePriceLabel.move(int(windowWidth/8), int(windowHeight/6))
+    self.purchasePriceLabel = QLabel(self)
+    self.purchasePriceLabel.setText("Purchase Price:")
+    self.purchasePriceLabel.setStyleSheet("font: 14pt \"MS Shell Dlg 2\";")
+    self.purchasePriceLabel.move(int(windowWidth/8), int(windowHeight/6))
   
     self.purchaseDateLabel = QLabel(self)
     self.purchaseDateLabel.setText("Purchase Date:")
@@ -181,23 +182,23 @@ class PricesDatesForm(QWidget):
     self.releaseDateLabel.move(int(windowWidth/8), int(windowHeight/2))
 
     
-    self.pruchasePriceInput = QtWidgets.QLineEdit(self)
-    self.pruchasePriceInput.setGeometry(QtCore.QRect(0,0, 430, 30))
-    self.pruchasePriceInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.pruchasePriceInput.setObjectName("purchasepriceinput")
-    self.pruchasePriceInput.move(int(windowWidth/8)+170, int(windowHeight/6)-5)
+    self.purchasePriceInput = QtWidgets.QLineEdit(self)
+    self.purchasePriceInput.setGeometry(QtCore.QRect(0,0, 430, 30))
+    self.purchasePriceInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
+    self.purchasePriceInput.setObjectName("purchasepriceinput")
+    self.purchasePriceInput.move(int(windowWidth/8)+170, int(windowHeight/6)-5)
+    
+    self.purchaseDateInput = QtWidgets.QLineEdit(self)
+    self.purchaseDateInput.setGeometry(QtCore.QRect(0,0, 430, 30))
+    self.purchaseDateInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
+    self.purchaseDateInput.setObjectName("releasedateinput")
+    self.purchaseDateInput.move(int(windowWidth/8)+170, int(windowHeight/3)-5)
     
     self.releaseDateInput = QtWidgets.QLineEdit(self)
     self.releaseDateInput.setGeometry(QtCore.QRect(0,0, 430, 30))
     self.releaseDateInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.releaseDateInput.setObjectName("releasedateinput")
-    self.releaseDateInput.move(int(windowWidth/8)+170, int(windowHeight/3)-5)
-    
-    self.developerInput = QtWidgets.QLineEdit(self)
-    self.developerInput.setGeometry(QtCore.QRect(0,0, 430, 30))
-    self.developerInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.developerInput.setObjectName("developerinput")
-    self.developerInput.move(int(windowWidth/8)+170, int(windowHeight/2)-5)
+    self.releaseDateInput.setObjectName("developerinput")
+    self.releaseDateInput.move(int(windowWidth/8)+170, int(windowHeight/2)-5)
   
     
     self.nextbutton = QtWidgets.QPushButton(self)
@@ -296,11 +297,11 @@ class ContributorsForm(QWidget):
     self.composerInput.setObjectName("composerinput")
     self.composerInput.move(int(windowWidth/8)+160, int(windowHeight/3)-5)
     
-    self.publisherInput = QtWidgets.QLineEdit(self)
-    self.publisherInput.setGeometry(QtCore.QRect(0,0, 490, 30))
-    self.publisherInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
-    self.publisherInput.setObjectName("publisherinput")
-    self.publisherInput.move(int(windowWidth/8)+160, int(windowHeight/2.4)-5)
+    self.programmerInput = QtWidgets.QLineEdit(self)
+    self.programmerInput.setGeometry(QtCore.QRect(0,0, 490, 30))
+    self.programmerInput.setStyleSheet("font: 14px \"MS Shell Dlg 2\"")
+    self.programmerInput.setObjectName("programmerinput")
+    self.programmerInput.move(int(windowWidth/8)+160, int(windowHeight/2.4)-5)
     
     self.artistInput = QtWidgets.QLineEdit(self)
     self.artistInput.setGeometry(QtCore.QRect(0,0, 490, 30))
@@ -428,7 +429,7 @@ class EntryPane(QWidget):
       self.page3.nextbutton.clicked.connect(self.goToNextPage)
       self.page3.backbutton.clicked.connect(self.goToPreviousPage)
       #page 4 button setup
-      self.page4.submitbutton.clicked.connect(self.goToNextPage)
+      self.page4.submitbutton.clicked.connect(self.getContents)
       self.page4.backbutton.clicked.connect(self.goToPreviousPage)
     
     def goToNextPage(self):
@@ -436,9 +437,36 @@ class EntryPane(QWidget):
       
     def goToPreviousPage(self):
       self.widget.setCurrentIndex(self.widget.currentIndex()-1)
+    
+    def getContents(self):
+      self.entry = Entry()
+      #page1 descriptors
+      self.entry.title = self.page1.titleInput.text
+      self.entry.isbn = self.page1.isbnInput.text
+      self.entry.console = self.page1.consoleInput.text
+      self.entry.dev = self.page1.developerInput.text
+      self.entry.pub = self.page1.publisherInput.text
+      self.entry.series = self.page1.seriesInput.text
+      self.entry.genre = self.page1.genreInput.text
+      #page2 descriptors
+      self.entry.pPrice = self.page2.purchasePriceInput.text
+      self.entry.pDate = self.page2.purchaseDateInput.text
+      self.entry.rDate = self.page2.releaseDateInput.text
+      #page3 descriptors
+      self.entry.director = self.page3.directorInput.text
+      self.entry.producer = self.page3.producerInput.text
+      self.entry.programmer = self.page3.programmerInput.text
+      self.entry.artist = self.page3.artistInput.text
+      self.entry.other = self.page3.otherInput.text
+      #page4 descriptors
+      self.entry.description = self.page4.descriptionInput.text
+      self.entry.link = self.page4.descriptionInput.text
+      
+      return self.entry
+      
 
-def next():
-  widget.setCurrentIndex(widget.currentIndex()+1)
+    def next():
+      widget.setCurrentIndex(widget.currentIndex()+1)
 
 if __name__ == '__main__':
   app = QApplication(sys.argv)

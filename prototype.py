@@ -13,10 +13,9 @@ class EntryScreen(QMainWindow):
     self.setGeometry(300,300,800,600)
     self.initUI()
     
-    list = LinkedList()
+    self.list = LinkedList()
     
     
-  
   def initUI(self):
     self.initHeadLabel()
     self.initCreateButton()
