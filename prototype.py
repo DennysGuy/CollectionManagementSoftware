@@ -11,14 +11,30 @@ class EntryScreen(QMainWindow):
     super(EntryScreen, self).__init__()
     self.setWindowTitle("Collection Management")
     self.setGeometry(300,300,800,600)
+    self.centralWidget = QWidget()
+    self.layout = QtWidgets.QVBoxLayout()
+    #self.layout.setSpacing(50)
+    self.centralWidget.setLayout(self.layout)
+    self.setCentralWidget(self.centralWidget)
+    
+    
     self.initUI()
     
-    self.list = LinkedList()
+    self.lList = LinkedList()
+    print(self.lList.size)
+  
+    cur = self.lList.head
+    
+    if (self.lList.size > 0):
+      while (cur.data != None):
+        self.layout.addWidget(cur.data)
+        cur = cur.next
+    
     
     
   def initUI(self):
-    self.initHeadLabel()
-    self.initCreateButton()
+    #self.layout.addWidget(self.initHeadLabel())
+    self.layout.addWidget(self.initCreateButton())
     
 
   def initHeadLabel(self):
@@ -95,8 +111,17 @@ class EntryScreen(QMainWindow):
   
   def initEntryForm(self):
     self.entryform = EntryPane()
+    self.entryform.page4.submitbutton.clicked.connect(self.addEntry)
+    self.entryform.page4.submitbutton.clicked.connect(self.entryform.close)
     self.entryform.show()
     
+    
+  def addEntry(self):
+      newEntry = self.entryform.getContents()
+      self.layout.addWidget(newEntry)
+      self.lList.addFirst(newEntry)
+      print(self.lList.size)
+      
     
 if __name__ == '__main__':
   app = QApplication(sys.argv)

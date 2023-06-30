@@ -441,26 +441,26 @@ class EntryPane(QWidget):
     def getContents(self):
       self.entry = Entry()
       #page1 descriptors
-      self.entry.title = self.page1.titleInput.text
-      self.entry.isbn = self.page1.isbnInput.text
-      self.entry.console = self.page1.consoleInput.text
-      self.entry.dev = self.page1.developerInput.text
-      self.entry.pub = self.page1.publisherInput.text
-      self.entry.series = self.page1.seriesInput.text
-      self.entry.genre = self.page1.genreInput.text
+      self.entry.title = self.page1.titleInput.text()
+      self.entry.isbn = self.page1.isbnInput.text()
+      self.entry.console = self.page1.consoleInput.text()
+      self.entry.dev = self.page1.developerInput.text()
+      self.entry.pub = self.page1.publisherInput.text()
+      self.entry.series = self.page1.seriesInput.text()
+      self.entry.genre = self.page1.genreInput.text()
       #page2 descriptors
-      self.entry.pPrice = self.page2.purchasePriceInput.text
-      self.entry.pDate = self.page2.purchaseDateInput.text
-      self.entry.rDate = self.page2.releaseDateInput.text
+      self.entry.pPrice = self.page2.purchasePriceInput.text()
+      self.entry.pDate = self.page2.purchaseDateInput.text()
+      self.entry.rDate = self.page2.releaseDateInput.text()
       #page3 descriptors
-      self.entry.director = self.page3.directorInput.text
-      self.entry.producer = self.page3.producerInput.text
-      self.entry.programmer = self.page3.programmerInput.text
-      self.entry.artist = self.page3.artistInput.text
-      self.entry.other = self.page3.otherInput.text
+      self.entry.director = self.page3.directorInput.text()
+      self.entry.producer = self.page3.producerInput.text()
+      self.entry.programmer = self.page3.programmerInput.text()
+      self.entry.artist = self.page3.artistInput.text()
+      self.entry.other = self.page3.otherInput.text()
       #page4 descriptors
-      self.entry.description = self.page4.descriptionInput.text
-      self.entry.link = self.page4.descriptionInput.text
+      self.entry.description = self.page4.descriptionInput.text()
+      self.entry.link = self.page4.descriptionInput.text()
       
       return self.entry
       

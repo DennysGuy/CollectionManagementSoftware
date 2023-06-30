@@ -7,7 +7,7 @@ class Entry(QWidget):
   def __init__(self):
     super(Entry, self).__init__()
     self.initVars()
-    self.setGeometry(QtCore.QRect(300, 300, 650, 128))
+    self.setGeometry(QtCore.QRect(0, 0, 650, 128))
     #self.setFixedWidth(550)
     #self.setFixedHeight(90)
     self.setStyleSheet("QWidget#entry{background-color: rgb(255, 255, 255);" "border: 1px dotted;}")
